@@ -236,7 +236,7 @@
             createTournamentButton.FlatStyle = FlatStyle.Flat;
             createTournamentButton.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             createTournamentButton.ForeColor = Color.FromArgb(51, 153, 255);
-            createTournamentButton.Location = new Point(289, 512);
+            createTournamentButton.Location = new Point(294, 512);
             createTournamentButton.Name = "createTournamentButton";
             createTournamentButton.Size = new Size(284, 59);
             createTournamentButton.TabIndex = 24;
