@@ -70,7 +70,6 @@
             placeNumberLabel.Size = new Size(183, 37);
             placeNumberLabel.TabIndex = 23;
             placeNumberLabel.Text = "Place Number";
-            placeNumberLabel.Click += firstNameLabel_Click;
             // 
             // placeNameValue
             // 
@@ -96,6 +95,7 @@
             prizePercentageValue.Name = "prizePercentageValue";
             prizePercentageValue.Size = new Size(181, 35);
             prizePercentageValue.TabIndex = 30;
+            prizePercentageValue.Text = "0";
             // 
             // prizePercentageLabel
             // 
@@ -114,6 +114,7 @@
             prizeAmountValue.Name = "prizeAmountValue";
             prizeAmountValue.Size = new Size(181, 35);
             prizeAmountValue.TabIndex = 28;
+            prizeAmountValue.Text = "0";
             // 
             // prizeAmountLabel
             // 
@@ -151,6 +152,7 @@
             createPrizeButton.TabIndex = 32;
             createPrizeButton.Text = "Create Prize";
             createPrizeButton.UseVisualStyleBackColor = true;
+            createPrizeButton.Click += createPrizeButton_Click;
             // 
             // CreatePrizeForm
             // 
