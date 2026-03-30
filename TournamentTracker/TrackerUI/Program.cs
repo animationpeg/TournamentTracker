@@ -1,22 +1,43 @@
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
+using TrackerLibrary.DataAccess;
+
 namespace TrackerUI
 {
     internal static class Program
     {
+        public static IConfiguration Configuration { get; private set; }
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            // Build the configuration from the appsettings.json file
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            Configuration = builder.Build();
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            // Initialise the database connections for the application
-            TrackerLibrary.GlobalConfig.InitializeConnections(true, true);
-            //Application.Run(new CreatePrizeForm());
+            // Get the connection string from the configuration
+            string connectionString = Configuration.GetConnectionString("TournamentTracker");
 
-            Application.Run(new TournamentDashboardForm());
+            // Pass the connection string to the GlobalConfig class to make it available throughout the application
+            TrackerLibrary.GlobalConfig.ConnectionString = connectionString;
+
+            // Create an instance of the SQL data access class with the connection string to pass to the Library
+            // var sqlData = new SqlDataAccess(connectionString);
+
+            // Initialise the database connections for the application
+            TrackerLibrary.GlobalConfig.InitializeConnections(TrackerLibrary.DatabaseType.Sql);
+
+            Application.Run(new CreatePrizeForm());
+            //Application.Run(new TournamentDashboardForm());
         }
     }
 }
