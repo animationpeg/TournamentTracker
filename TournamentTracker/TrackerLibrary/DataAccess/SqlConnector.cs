@@ -68,6 +68,15 @@ namespace TrackerLibrary.DataAccess
             }
         }
 
+        public List<PersonModel> GetPerson_All()
+        {
+            List<PersonModel> output;
+            using IDbConnection connection = new SqlConnection(_connectionString);
+            {
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+            return output;
+        }
     }
     // TODO - Make this class to 
     public class SqlDataAccess

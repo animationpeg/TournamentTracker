@@ -54,5 +54,10 @@ namespace TrackerLibrary.DataAccess
 
             return model;
         }
+        // Data Retrieval methods
+        public List<PersonModel> GetPerson_All()
+        {
+            return PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
+        }
     }
 }
