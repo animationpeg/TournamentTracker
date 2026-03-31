@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Configuration;
-using System.Configuration;
+
 using TrackerLibrary.DataAccess;
 
 namespace TrackerUI
@@ -26,15 +26,19 @@ namespace TrackerUI
 
             // Get the connection string from the configuration
             string connectionString = Configuration.GetConnectionString("TournamentTracker");
-
             // Pass the connection string to the GlobalConfig class to make it available throughout the application
             TrackerLibrary.GlobalConfig.ConnectionString = connectionString;
 
-            // Create an instance of the SQL data access class with the connection string to pass to the Library
-            // var sqlData = new SqlDataAccess(connectionString);
+            string relativePath = Configuration["FilePaths:Base"];
+            string fullPath = Path.Combine(AppContext.BaseDirectory, relativePath);
+
+            // Set the file path for the text file storage, by calling the method in the GlobalConfig class
+            TrackerLibrary.GlobalConfig.SetFilePath(fullPath);
 
             // Initialise the database connections for the application
-            TrackerLibrary.GlobalConfig.InitializeConnections(TrackerLibrary.DatabaseType.Sql);
+            TrackerLibrary.GlobalConfig.InitializeConnections(TrackerLibrary.DatabaseType.TextFile);
+
+            Directory.CreateDirectory(fullPath);
 
             Application.Run(new CreatePrizeForm());
             //Application.Run(new TournamentDashboardForm());

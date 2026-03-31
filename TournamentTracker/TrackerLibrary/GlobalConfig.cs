@@ -29,5 +29,12 @@ namespace TrackerLibrary
 
         // TODO - Make this method to return the correct connection string based on the name provided.
         public static string ConnectionString { get; set; }
+
+        // File path for text file storage, and a method to set it from the UI
+        public static string FilePath { get; private set; } = string.Empty;
+        public static void SetFilePath(string path)
+        {
+            FilePath = path;
+        }
     }
 }
