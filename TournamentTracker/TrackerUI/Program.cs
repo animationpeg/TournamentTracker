@@ -40,7 +40,7 @@ namespace TrackerUI
 
             Directory.CreateDirectory(fullPath);
 
-            Application.Run(new CreatePrizeForm());
+            Application.Run(new CreateTeamForm());
             //Application.Run(new TournamentDashboardForm());
         }
     }

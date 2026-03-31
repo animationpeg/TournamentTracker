@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TrackerLibrary;
+using TrackerLibrary.Models;
 
 namespace TrackerUI
 {
@@ -15,9 +17,51 @@ namespace TrackerUI
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void createMemberButton_Click(object sender, EventArgs e)
         {
+            if (ValidateForm())
+            {
+                PersonModel p = new PersonModel();
 
+                p.FirstName = firstNameValue.Text;
+                p.LastName = lastNameValue.Text;
+                p.EmailAddress = emailValue.Text;
+                p.PhoneNumber = phoneNumberValue.Text;
+
+                GlobalConfig.Connection.CreatePerson(p);
+
+                firstNameValue.Text = "";
+                lastNameValue.Text = "";
+                emailValue.Text = "";
+                phoneNumberValue.Text = "";
+
+            }
+            else
+            {
+                MessageBox.Show("All the fields must be filled in.");
+            }
+        }
+
+        private bool ValidateForm()
+        {
+            if (firstNameValue.Text.Length == 0)
+            {
+                return false;
+            }
+            if (lastNameValue.Text.Length == 0)
+            {
+                return false;
+            }
+            if (emailValue.Text.Length == 0)
+            {
+                return false;
+            }
+            if (phoneNumberValue.Text.Length == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

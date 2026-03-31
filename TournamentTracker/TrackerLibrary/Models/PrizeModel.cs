@@ -12,7 +12,7 @@ namespace TrackerLibrary.Models
         /// <summary>
         /// The unique identifier for the prize.
         /// </summary>
-        public int Id { get; set; }
+        public int PrizeId { get; set; }
         /// <summary>
         /// Represents the place number that corresponds to the prize (e.g., 1 for first place, 2 for second place, etc.).
         /// </summary>

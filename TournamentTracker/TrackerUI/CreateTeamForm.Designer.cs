@@ -132,7 +132,6 @@
             addNewMemberGroupBox.TabIndex = 20;
             addNewMemberGroupBox.TabStop = false;
             addNewMemberGroupBox.Text = "Add New Member";
-            addNewMemberGroupBox.Enter += groupBox1_Enter;
             // 
             // createMemberButton
             // 
@@ -148,6 +147,7 @@
             createMemberButton.TabIndex = 21;
             createMemberButton.Text = "Create Member";
             createMemberButton.UseVisualStyleBackColor = true;
+            createMemberButton.Click += createMemberButton_Click;
             // 
             // phoneNumberValue
             // 
