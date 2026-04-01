@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using TrackerLibrary.Models;
-using System.Data;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
-using Dapper;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using TrackerLibrary.Models;
 
 // @PlaceNumber int,
 // @PlaceName nvarchar(100),
@@ -92,6 +93,7 @@ namespace TrackerLibrary.DataAccess
             }
         }
 
+        // Data Retrieval methods
         public List<PersonModel> GetPerson_All()
         {
             List<PersonModel> output;
@@ -102,6 +104,23 @@ namespace TrackerLibrary.DataAccess
             return output;
         }
 
+        public List<TeamModel> GetTeam_All()
+        {
+            List<TeamModel> output;
+            using IDbConnection connection = new SqlConnection(_connectionString);
+            {
+                output = connection.Query<TeamModel>("dbo.spTeam_GetAll").ToList();
+
+                foreach (TeamModel team in output)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@TeamId", team.TeamId);
+
+                    team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                }
+            }
+            return output;
+        }
     }
     // TODO - Make this class to 
     public class SqlDataAccess

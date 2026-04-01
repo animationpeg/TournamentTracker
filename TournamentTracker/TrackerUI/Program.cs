@@ -36,11 +36,11 @@ namespace TrackerUI
             TrackerLibrary.GlobalConfig.SetFilePath(fullPath);
 
             // Initialise the database connections for the application
-            TrackerLibrary.GlobalConfig.InitializeConnections(TrackerLibrary.DatabaseType.TextFile);
+            TrackerLibrary.GlobalConfig.InitializeConnections(TrackerLibrary.DatabaseType.Sql);
 
             Directory.CreateDirectory(fullPath);
 
-            Application.Run(new CreateTeamForm());
+            Application.Run(new CreateTournamentForm());
             //Application.Run(new TournamentDashboardForm());
         }
     }

@@ -31,13 +31,11 @@ namespace TrackerUI
         }
         private void WireUpLists()
         {
-            selectTeamMemberDropDown.DataSource = null;
-
+            selectTeamMemberDropDown.DataSource = null
             selectTeamMemberDropDown.DataSource = availableTeamMembers;
             selectTeamMemberDropDown.DisplayMember = "FullName";
 
-            teamMembersListBox.DataSource = null;
-
+            teamMembersListBox.DataSource = null
             teamMembersListBox.DataSource = selectedTeamMembers;
             teamMembersListBox.DisplayMember = "FullName";
         }
