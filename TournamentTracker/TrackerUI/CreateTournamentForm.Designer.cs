@@ -192,6 +192,7 @@
             removeSelectedPlayersButton.TabIndex = 20;
             removeSelectedPlayersButton.Text = "Remove Selected";
             removeSelectedPlayersButton.UseVisualStyleBackColor = true;
+            removeSelectedPlayersButton.Click += removeSelectedPlayersButton_Click;
             // 
             // removeSelectedPrizeButton
             // 
@@ -207,6 +208,7 @@
             removeSelectedPrizeButton.TabIndex = 23;
             removeSelectedPrizeButton.Text = "Remove Selected";
             removeSelectedPrizeButton.UseVisualStyleBackColor = true;
+            removeSelectedPrizeButton.Click += removeSelectedPrizeButton_Click;
             // 
             // prizesLabel
             // 
